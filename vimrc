@@ -55,7 +55,7 @@ set laststatus=2
 set backspace=indent,eol,start " allow backspacing over everything
 set timeout timeoutlen=1000 ttimeoutlen=100 " fix slow O inserts
 set lazyredraw " skip redrawing screen in some cases
-set autochdir " automatically set current directory to directory of last opened file
+"set autochdir " automatically set current directory to directory of last opened file
 set hidden " allow auto-hiding of edited buffers
 set history=8192 " more history
 set nojoinspaces " suppress inserting two spaces between sentences
@@ -70,7 +70,7 @@ set smartcase
 " tab completion for files/bufferss
 set wildmode=longest,list
 set wildmenu
-set mouse+=a " enable mouse mode (scrolling, selection, etc)
+"set mouse+=a " enable mouse mode (scrolling, selection, etc)
 if &term =~ '^screen'
     " tmux knows the extended mouse mode
     set ttymouse=xterm2
