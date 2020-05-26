@@ -150,6 +150,8 @@ endif
 nnoremap ; :CtrlPBuffer<CR>
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_show_hidden = 1
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+set wildignore+=.DS_Store " MacOSX
 
 " ag / ack.vim
 command -nargs=+ Gag Gcd | Ack! <args>
