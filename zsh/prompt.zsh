@@ -91,7 +91,7 @@ function PR_ARROW() {
 RPR_SHOW_USER=true # Set to false to disable user in rhs prompt
 function RPR_USER() {
     if [[ "${RPR_SHOW_USER}" == "true" ]]; then
-        echo "%(!.%{$fg[red]%}.%{$fg[violet]%})%B%n%b%{$reset_color%}"
+        echo "%(!.%{$fg[red]%}.%{$fg[violet]%})%n%{$reset_color%}"
     fi
 }
 
@@ -158,7 +158,7 @@ RPR_SHOW_GIT=true # Set to false to disable git status in rhs prompt
 function git_prompt_string() {
     if [[ "${RPR_SHOW_GIT}" == "true" ]]; then
         local git_where="$(parse_git_branch)"
-        [ -n "$git_where" ] && echo " $GIT_PROMPT_SYMBOL$GIT_PROMPT_PREFIX%{$fg[magenta]%}%B${git_where#(refs/heads/|tags/)}%b$GIT_PROMPT_SUFFIX"
+        [ -n "$git_where" ] && echo " $GIT_PROMPT_SYMBOL$GIT_PROMPT_PREFIX%{$fg[magenta]%}${git_where#(refs/heads/|tags/)}$GIT_PROMPT_SUFFIX"
     fi
 }
 
@@ -177,7 +177,7 @@ function PR_EXTRA() {
 # Prompt
 function PCMD() {
     if (( PROMPT_MODE == 0 )); then
-        echo "$(PR_EXTRA)$(PR_DIR) $(PR_ERROR)$(PR_ARROW) " # space at the end
+        echo "$(PR_EXTRA)$(PR_DIR) $(PR_ARROW) " # space at the end
     elif (( PROMPT_MODE == 1 )); then
         echo "$(PR_EXTRA)$(PR_DIR 1) $(PR_ERROR)$(PR_ARROW) " # space at the end
     else
