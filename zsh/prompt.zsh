@@ -70,7 +70,7 @@ function PR_DIR() {
         last=${last[2,-1]} # take substring
     fi
 
-    echo "%{$fg[green]%}${truncated}%{$fg[orange]%}%B${last}%b%{$reset_color%}"
+    echo "${truncated}%{$fg[blue]%}%B${last}%b%{$reset_color%}"
 }
 
 # An exclamation point if the previous command did not complete successfully
@@ -83,7 +83,7 @@ PR_ARROW_CHAR=">"
 
 # The arrow in red (for root) or violet (for regular user)
 function PR_ARROW() {
-    echo "%(!.%{$fg[red]%}.%{$fg[violet]%})${PR_ARROW_CHAR}%{$reset_color%}"
+    echo "${PR_ARROW_CHAR}%{$reset_color%}"
 }
 
 # Set custom rhs prompt
@@ -91,7 +91,7 @@ function PR_ARROW() {
 RPR_SHOW_USER=true # Set to false to disable user in rhs prompt
 function RPR_USER() {
     if [[ "${RPR_SHOW_USER}" == "true" ]]; then
-        echo "%(!.%{$fg[red]%}.%{$fg[violet]%})%n%{$reset_color%}"
+        echo "%(!.%{$fg[red]%}.)%n%{$reset_color%}"
     fi
 }
 
@@ -126,7 +126,7 @@ EOF
 # ' at ' in orange outputted only if both user and host enabled
 function RPR_AT() {
     if [[ "${RPR_SHOW_USER}" == "true" ]] && [[ "${RPR_SHOW_HOST}" == "true" ]]; then
-        echo "%{$fg[blue]%}@%{$reset_color%}"
+        echo "@%{$reset_color%}"
     fi
 }
 
@@ -138,8 +138,8 @@ function RPR_INFO() {
 # Set RHS prompt for git repositories
 DIFF_SYMBOL="-"
 GIT_PROMPT_SYMBOL=""
-GIT_PROMPT_PREFIX="%{$fg[violet]%}%B(%b%{$reset_color%}"
-GIT_PROMPT_SUFFIX="%{$fg[violet]%}%B)%b%{$reset_color%}"
+GIT_PROMPT_PREFIX="("
+GIT_PROMPT_SUFFIX=")"
 GIT_PROMPT_AHEAD="%{$fg[teal]%}%B+NUM%b%{$reset_color%}"
 GIT_PROMPT_BEHIND="%{$fg[orange]%}%B-NUM%b%{$reset_color%}"
 GIT_PROMPT_MERGING="%{$fg[cyan]%}%Bx%b%{$reset_color%}"
@@ -158,7 +158,7 @@ RPR_SHOW_GIT=true # Set to false to disable git status in rhs prompt
 function git_prompt_string() {
     if [[ "${RPR_SHOW_GIT}" == "true" ]]; then
         local git_where="$(parse_git_branch)"
-        [ -n "$git_where" ] && echo " $GIT_PROMPT_SYMBOL$GIT_PROMPT_PREFIX%{$fg[magenta]%}${git_where#(refs/heads/|tags/)}$GIT_PROMPT_SUFFIX"
+        [ -n "$git_where" ] && echo " $GIT_PROMPT_SYMBOL$GIT_PROMPT_PREFIX%{$fg[orange]%}${git_where#(refs/heads/|tags/)}%{$reset_color%}$GIT_PROMPT_SUFFIX"
     fi
 }
 
