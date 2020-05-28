@@ -2,10 +2,6 @@
 	path = .dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
-[submodule "vim/bundle/vim-colors-solarized"]
-	path = vim/pack/vendor/start/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
-	ignore = untracked
 [submodule "vim/bundle/vim-scala"]
 	path = vim/pack/vendor/start/vim-scala
 	url = https://github.com/derekwyatt/vim-scala.git
@@ -163,3 +159,6 @@
 [submodule "zsh/plugins/zsh-completions"]
 	path = zsh/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
+[submodule "vim/pack/vendor/start/jellybeans.vim"]
+	path = vim/pack/vendor/start/jellybeans.vim
+	url = https://github.com/nanotech/jellybeans.vim.git

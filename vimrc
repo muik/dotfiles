@@ -23,17 +23,7 @@ elseif &t_Co < 256
     colorscheme default
     set nocursorline " looks bad in this mode
 else
-    set background=dark
-    let g:solarized_termcolors=256 " instead of 16 color with mapping in terminal
-    colorscheme solarized
-    " customized colors
-    highlight SignColumn ctermbg=234
-    highlight StatusLine cterm=bold ctermfg=245 ctermbg=235
-    highlight StatusLineNC cterm=bold ctermfg=245 ctermbg=235
-    let g:lightline = {'colorscheme': 'dark'}
-    highlight SpellBad cterm=underline
-    " patches
-    highlight CursorLineNr cterm=NONE
+    colorscheme jellybeans
 endif
 
 filetype plugin indent on " enable file type detection
