@@ -41,3 +41,9 @@ fi
 if [ -f ~/.zshrc_local_after ]; then
     source ~/.zshrc_local_after
 fi
+
+# fzf
+[ -f ~/.zsh/fzf.zsh ] && source ~/.zsh/fzf.zsh
+if [[ `uname` == "Darwin" ]]; then
+    bindkey "ç" fzf-cd-widget
+fi
