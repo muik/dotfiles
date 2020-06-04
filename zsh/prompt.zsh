@@ -1,7 +1,7 @@
 # User customizable options
 # PR_ARROW_CHAR="[some character]"
-# RPR_SHOW_USER=(true, false) - show username in rhs prompt
-# RPR_SHOW_HOST=(true, false) - show host in rhs prompt
+# PR_SHOW_USER=(true, false) - show username in rhs prompt
+# PR_SHOW_HOST=(true, false) - show host in rhs prompt
 # RPR_SHOW_GIT=(true, false) - show git status in rhs prompt
 # PR_EXTRA="[stuff]" - extra content to add to prompt
 # RPR_EXTRA="[stuff]" - extra content to add to rhs prompt
@@ -88,9 +88,9 @@ function PR_ARROW() {
 
 # Set custom rhs prompt
 # User in red (for root) or violet (for regular user)
-RPR_SHOW_USER=true # Set to false to disable user in rhs prompt
-function RPR_USER() {
-    if [[ "${RPR_SHOW_USER}" == "true" ]]; then
+PR_SHOW_USER=true # Set to false to disable user in rhs prompt
+function PR_USER() {
+    if [[ "${PR_SHOW_USER}" == "true" ]]; then
         echo "%(!.%{$fg[red]%}.)%n%{$reset_color%}"
     fi
 }
@@ -104,35 +104,27 @@ function machine_name() {
 }
 
 # Host in a deterministically chosen color
-RPR_SHOW_HOST=true # Set to false to disable host in rhs prompt
-function RPR_HOST() {
+PR_SHOW_HOST=true # Set to false to disable host in rhs prompt
+function PR_HOST() {
     local colors
     colors=(cyan green yellow red pink)
-    local index=$(python <<EOF
-import hashlib
-
-hash = int(hashlib.sha1('$(machine_name)'.encode('utf8')).hexdigest(), 16)
-index = hash % ${#colors} + 1
-
-print(index)
-EOF
-    )
+    local index=1
     local color=$colors[index]
-    if [[ "${RPR_SHOW_HOST}" == "true" ]]; then
-        echo "%{$fg[$color]%}$(machine_name)%{$reset_color%}"
+    if [[ "${PR_SHOW_HOST}" == "true" ]]; then
+        echo "%{$fg[$color]%}$(machine_name)%{$reset_color%}:"
     fi
 }
 
 # ' at ' in orange outputted only if both user and host enabled
-function RPR_AT() {
-    if [[ "${RPR_SHOW_USER}" == "true" ]] && [[ "${RPR_SHOW_HOST}" == "true" ]]; then
+function PR_AT() {
+    if [[ "${PR_SHOW_USER}" == "true" ]] && [[ "${PR_SHOW_HOST}" == "true" ]]; then
         echo "@%{$reset_color%}"
     fi
 }
 
 # Build the rhs prompt
-function RPR_INFO() {
-    echo "$(RPR_USER)$(RPR_AT)$(RPR_HOST)"
+function PR_INFO() {
+    echo "$(PR_USER)$(PR_AT)$(PR_HOST)"
 }
 
 # Set RHS prompt for git repositories
@@ -158,7 +150,7 @@ RPR_SHOW_GIT=true # Set to false to disable git status in rhs prompt
 function git_prompt_string() {
     if [[ "${RPR_SHOW_GIT}" == "true" ]]; then
         local git_where="$(parse_git_branch)"
-        [ -n "$git_where" ] && echo " $GIT_PROMPT_SYMBOL$GIT_PROMPT_PREFIX%{$fg[orange]%}${git_where#(refs/heads/|tags/)}%{$reset_color%}$GIT_PROMPT_SUFFIX"
+        [ -n "$git_where" ] && echo "$GIT_PROMPT_SYMBOL$GIT_PROMPT_PREFIX%{$fg[orange]%}${git_where#(refs/heads/|tags/)}%{$reset_color%}$GIT_PROMPT_SUFFIX"
     fi
 }
 
@@ -171,7 +163,7 @@ function tog() {
 }
 
 function PR_EXTRA() {
-    # do nothing by default
+    echo $(PR_INFO)
 }
 
 # Prompt
@@ -189,13 +181,13 @@ PROMPT='$(PCMD)' # single quotes to prevent immediate execution
 RPROMPT='' # set asynchronously and dynamically
 
 function RPR_EXTRA() {
-    # do nothing by default
+    echo $(prompt_k8s)
 }
 
 # Right-hand prompt
 function RCMD() {
     if (( PROMPT_MODE == 0 )); then
-        echo "$(RPR_INFO)$(git_prompt_string)$(RPR_EXTRA)"
+        echo "$(git_prompt_string)$(RPR_EXTRA)"
     elif (( PROMPT_MODE <= 2 )); then
         echo "$(git_prompt_string)$(RPR_EXTRA)"
     else
@@ -234,4 +226,12 @@ function TRAPUSR1() {
 
     # redisplay
     zle && zle reset-prompt
+}
+
+# Display Kubectl Context
+RPR_SHOW_K8S_CONTEXT=true # Set to false to disable git status in rhs prompt
+function prompt_k8s(){
+    if [[ "${RPR_SHOW_K8S_CONTEXT}" == "true" ]]; then
+        echo "($(kubectl config current-context 2> /dev/null))"
+    fi
 }

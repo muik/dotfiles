@@ -18,6 +18,8 @@ alias mv='mv -i'
 # git related aliases
 alias gag='git exec ag'
 
+alias k=kubectl
+
 # Update dotfiles
 dfu() {
     (
