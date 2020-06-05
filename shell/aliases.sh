@@ -15,6 +15,8 @@ alias l='ls'
 alias cp='cp -i'
 alias mv='mv -i'
 
+alias df='df -h'
+
 # git related aliases
 alias gag='git exec ag'
 
