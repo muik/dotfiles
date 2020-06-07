@@ -1,7 +1,7 @@
 [alias]
 	dropbox = ! "git-dropbox-manage"
 	exec = ! "exec"
-	st = status -sb
+	st = status -b
 	versions = tag -l --sort=version:refname
 	br = branch -vv
 	bra = branch -vv --all
