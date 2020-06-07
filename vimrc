@@ -211,3 +211,7 @@ let $LOCALFILE=expand("~/.vimrc_local")
 if filereadable($LOCALFILE)
     source $LOCALFILE
 endif
+
+" no auto indent # comment
+autocmd BufNewFile,BufReadPost * if &filetype == "python" | set indentkeys-=0# | endif
+autocmd BufNewFile,BufReadPost * if &filetype == "yaml" | set indentkeys-=0# | endif
