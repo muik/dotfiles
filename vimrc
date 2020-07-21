@@ -148,7 +148,7 @@ let g:black_linelength = 120
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
-\   'python': ['add_blank_lines_for_python_control_statements', 'autopep8', 'reorder-python-imports'],
+\   'python': ['add_blank_lines_for_python_control_statements', 'autopep8', 'reorder-python-imports', 'isort'],
 \}
 " Set this variable to 1 to fix files when you save them.
 "let g:ale_fix_on_save = 1
