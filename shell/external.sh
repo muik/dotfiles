@@ -17,3 +17,6 @@ bindkey "ç" fzf-cd-widget
 # Kubernetes
 source <(kubectl completion zsh)
 source <(kubectl completion zsh | sed s/kubectl/k/g)
+
+# gcloud athentication env
+export GOOGLE_APPLICATION_CREDENTIALS=$HOME/.config/gcloud/application_default_credentials.json
