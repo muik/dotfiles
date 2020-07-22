@@ -38,9 +38,6 @@
 [submodule "vim/pack/vendor/start/jellybeans.vim"]
 	path = vim/pack/vendor/start/jellybeans.vim
 	url = https://github.com/nanotech/jellybeans.vim.git
-[submodule "vim/pack/vendor/start/black"]
-	path = vim/pack/vendor/start/black
-	url = https://github.com/psf/black.git
 [submodule "vim/pack/vendor/start/ale"]
 	path = vim/pack/vendor/start/ale
 	url = https://github.com/dense-analysis/ale.git

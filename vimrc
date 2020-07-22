@@ -13,18 +13,6 @@ augroup CursorLineOnlyInActiveWindow
     autocmd WinLeave * setlocal nocursorline
 augroup END
 
-" vim can autodetect this based on $TERM (e.g. 'xterm-256color')
-" but it can be set to force 256 colors
-" set t_Co=256
-if has('gui_running')
-    colorscheme solarized
-    let g:lightline = {'colorscheme': 'solarized'}
-elseif &t_Co < 256
-    colorscheme default
-    set nocursorline " looks bad in this mode
-else
-    colorscheme jellybeans
-endif
 
 filetype plugin indent on " enable file type detection
 set autoindent
@@ -141,14 +129,13 @@ map zg/ <Plug>(incsearch-easymotion-stay)
 
 " black
 let g:black_linelength = 120
-"noremap <Leader>c :Black<CR>
 
 " Asynchronous Lint Engine
-"let g:ale_fixers = {'python': ['isort']}
+noremap <Leader>f :ALEFix<CR>
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
-\   'python': ['add_blank_lines_for_python_control_statements', 'autopep8', 'reorder-python-imports', 'isort'],
+\   'python': ['add_blank_lines_for_python_control_statements', 'autopep8', 'isort', 'black'],
 \}
 " Set this variable to 1 to fix files when you save them.
 "let g:ale_fix_on_save = 1
