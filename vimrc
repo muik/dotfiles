@@ -33,6 +33,7 @@ set laststatus=2
 set backspace=indent,eol,start " allow backspacing over everything
 set timeout timeoutlen=1000 ttimeoutlen=100 " fix slow O inserts
 set lazyredraw " skip redrawing screen in some cases
+set nofixendofline
 "set autochdir " automatically set current directory to directory of last opened file
 set hidden " allow auto-hiding of edited buffers
 set history=8192 " more history
@@ -105,6 +106,9 @@ nnoremap <C-n> :set rnu!<CR>
 
 " save read-only files
 command -nargs=0 Sudow w !sudo tee % >/dev/null
+
+" insert pdb.set_trace
+autocmd FileType python nnoremap <leader>t oimport pdb; pdb.set_trace()<Esc>
 
 "---------------------
 " Plugin configuration
