@@ -41,3 +41,6 @@
 [submodule "vim/pack/vendor/start/ale"]
 	path = vim/pack/vendor/start/ale
 	url = https://github.com/dense-analysis/ale.git
+[submodule "vim/pack/vendor/start/nerdcommenter"]
+	path = vim/pack/vendor/start/nerdcommenter
+	url = https://github.com/preservim/nerdcommenter.git
