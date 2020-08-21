@@ -148,6 +148,9 @@ let g:ale_linters = {
 " Set this variable to 1 to fix files when you save them.
 "let g:ale_fix_on_save = 1
 
+" NERD Commenter
+let g:NERDDefaultAlign = 'left'
+
 "---------------------
 " Local customizations
 "---------------------
