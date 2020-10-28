@@ -20,3 +20,7 @@ source <(kubectl completion zsh | sed s/kubectl/k/g)
 
 # gcloud athentication env
 export GOOGLE_APPLICATION_CREDENTIALS=$HOME/.config/gcloud/application_default_credentials.json
+
+# for gsutil
+# https://github.com/GoogleCloudPlatform/gsutil/issues/961#issuecomment-665603017
+export CLOUDSDK_PYTHON=/usr/local/bin/python3
