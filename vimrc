@@ -131,8 +131,9 @@ map z/ <Plug>(incsearch-easymotion-/)
 map z? <Plug>(incsearch-easymotion-?)
 map zg/ <Plug>(incsearch-easymotion-stay)
 
-" black
+" python max line length
 let g:black_linelength = 120
+let g:ale_python_isort_options= '--max-line-length=120'
 
 " Asynchronous Lint Engine
 noremap <Leader>f :ALEFix<CR>
